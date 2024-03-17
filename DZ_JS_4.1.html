@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lan="en">
+  <head>
+      <meta charset="utf-8" />
+      <title>JS_DZ_3</title>
+  </head>
+  <body>
+      <button type="button" onclick = "InfoCar()">Информация об автомобиле</button>
+      <button type="button" onclick = "SpeedCar(car)">Рассчитать время</button>
+      <script>
+          // Создать объект, описывающий автомобиль (производитель, модель, год выпуска, средняя скорость), и следующие функции для работы с этим объектом. 
+          var car = {
+              manufacturer: "Россия",
+              model: "Рено",
+              year_release: 2017,
+              average_speed: 80,
+          };
+          // 1. Функция для вывода на экран информации об автомобиле.              
+         function InfoCar() {
+              alert('Производитель: ' + car.manufacturer+', модель: ' + car.model + ', год выпуска: ' + car.year_release + ', средняя скорость: ' + car.average_speed);
+          }               
+          // 2. Функция для подсчета необходимого времени для преодоления переданного расстояния со средней скоростью. 
+          // Учтите, что через каждые 4 часа дороги водителю необходимо делать перерыв на 1 час 
+          function SpeedCar() {
+              var distances = Number(prompt('Введите расстоение, которое необходимо преодолеть в км'));
+              var time = distances/car.average_speed;
+              if (time<=4) {
+                  alert('Для преодоления растояния '+distances+ ' км потребуется '+time+' часов');
+              }
+              else {
+                  alert('Для преодоления растояния '+distances+ ' км потребуется '+(Math.trunc(time/4)+time)+' часов');
+              }
+          }
+      </script>
+  </body>
+</html>

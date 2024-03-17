@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lan="en">
+  <head>
+      <meta charset="utf-8" />
+      <title>JS_DZ_3</title>
+  </head>
+  <body>
+      <button type="button" onclick = "Addition(fraction_1, fraction_2)">Сложение 2-х дробей</button>
+      <button type="button" onclick = "Subtraction(fraction_1, fraction_2)">Вычитание 2-х дробей</button>
+      <button type="button" onclick = "Multiplication(fraction_1, fraction_2)">Умножение 2-х дробей</button>
+      <button type="button" onclick = "Division(fraction_1, fraction_2)">Деление 2-х дробей</button>
+      <script>
+          // Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, и следующие функции для работы с этим объектом.
+            // 1. Функция сложения 2-х объектов-дробей.
+            // 2. Функция вычитания 2-х объектов-дробей.
+            // 3. Функция умножения 2-х объектов-дробей.
+            // 4. Функция деления 2-х объектов-дробей.
+            // 5. Функция сокращения объекта-дроби 
+          var fraction_1 = {
+              numerator: 1,
+              denominator: 2,
+          };
+          var fraction_2 = {
+              numerator: 2,
+              denominator: 5,
+          };
+          function Addition(fraction_1, fraction_2) {
+              var fraction = {
+                  numerator: 1,
+                  denominator: 1,
+              };
+              fraction.numerator = fraction_1.numerator*fraction_2.denominator + fraction_2.numerator*fraction_1.denominator;
+              fraction.denominator = fraction_1.denominator*fraction_2.denominator;
+              fraction = Reduction(fraction);
+              alert(fraction_1.numerator+' / '+fraction_1.denominator + ' + ' + fraction_2.numerator + ' / ' + fraction_2.denominator + ' = ' + fraction);
+          };
+          function Subtraction(fraction_1, fraction_2) {
+              var fraction = {
+                  numerator: 1,
+                  denominator: 1,
+              };
+              fraction.numerator = fraction_1.numerator*fraction_2.denominator - fraction_2.numerator*fraction_1.denominator;
+              fraction.denominator = fraction_1.denominator*fraction_2.denominator;
+              fraction = Reduction(fraction);
+              alert(fraction_1.numerator+' / '+fraction_1.denominator + ' - ' + fraction_2.numerator + ' / ' + fraction_2.denominator + ' = ' + fraction);
+          };
+          function Multiplication(fraction_1, fraction_2) {
+              var fraction = {
+                  numerator: 1,
+                  denominator: 1,
+              };
+              fraction.numerator = fraction_1.numerator*fraction_2.numerator;
+              fraction.denominator = fraction_1.denominator * fraction_2.denominator;
+              fraction = Reduction(fraction);
+              alert(fraction_1.numerator+' / '+fraction_1.denominator + ' * ' + fraction_2.numerator + ' / ' + fraction_2.denominator + ' = ' + fraction);
+          };
+          function Division(fraction_1, fraction_2) {
+              var fraction = {
+                  numerator: 1,
+                  denominator: 1,
+              };
+              fraction.numerator = fraction_1.numerator*fraction_2.denominator;
+              fraction.denominator = fraction_1.denominator*fraction_2.numerator;
+              fraction = Reduction(fraction);
+              alert(fraction_1.numerator+' / '+fraction_1.denominator + ' / ' + fraction_2.numerator + ' / ' + fraction_2.denominator + ' = ' + fraction);
+          };
+          function Reduction(obj) {
+              var NOD = 1;
+              var fraction = {
+                  numerator: obj.numerator,
+                  denominator: obj.denominator,
+              };
+              var i=fraction.numerator;
+              for (i; i > 1; i=i-1) {
+                  if (fraction.numerator%i == 0 && fraction.denominator%i == 0) {
+                      fraction.numerator = fraction.numerator/i;
+                      fraction.denominator = fraction.denominator/i;
+                      NOD = i;
+                  }
+              }
+              return fraction = fraction.numerator + ' / ' + fraction.denominator;
+          };
+      </script>
+  </body>
+</html>
