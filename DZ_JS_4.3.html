@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lan="en">
+  <head>
+      <meta charset="utf-8" />
+      <title>JS_DZ_4.3</title>
+  </head>
+  <body>
+      <button type="button" onclick = "Time_show()">Вывести время</button>
+      <button type="button" onclick = "Time_seconds()">Добавить секунды</button>
+      <button type="button" onclick = "Time_minutes()">Добавить минуты</button>
+      <button type="button" onclick = "Time_hours()">Добавить часы</button>
+      <script>
+          // Создать объект, описывающий время (часы, минуты, секунды), и следующие функции для работы с этим объектом.
+          //1. Функция вывода времени на экран.
+          //2. Функция изменения времени на переданное количество секунд.
+          //3. Функция изменения времени на переданное количество минут.
+          //4. Функция изменения времени на переданное количество часов.
+          //Учтите, что в последних 3-х функциях, при изменении одной части времени, может измениться и другая. Например: если ко времени «20:30:45» добавить 30 секунд, то должно получиться «20:31:15», а не «20:30:75»
+          var time = {
+              hours: 1,
+              minutes: 35,
+              seconds: 12,
+          };
+          function Time_show() {
+              alert(('0'+time.hours).slice(-2) + ':' + ('0'+time.minutes).slice(-2) + ':' + ('0'+time.seconds).slice(-2));
+          };
+          function Second(ss) {
+              var mm = Math.floor((time.seconds+ss)/60);
+              if (time.seconds+ss < 59) {
+                  time.seconds += ss; 
+              } else {
+                  Minute(mm);
+                  time.seconds = (time.seconds+ss) - 60*mm;
+              };              
+          };
+          function Time_seconds() {
+              var ss = Number(prompt('Сколько секунд необходимо добавить к текущему времени?'));
+              Second(ss);
+              Time_show();
+          };
+          function Minute(mm) {
+              var hh = Math.floor((time.minutes+mm)/60);
+              if (time.minutes+mm < 59) {
+                  time.minutes += mm; 
+              } else {
+                  Hour(hh);
+                  time.minutes = (time.minutes+mm) - 60*hh;
+              };
+          };
+          function Time_minutes() {
+              var mm = Number(prompt('Сколько минут необходимо добавить к текущему времени?'));
+              Minute(mm);
+              Time_show();
+          };
+          function Hour(hh) {
+              var h = Math.floor((time.hours+hh)/24);
+              if (time.hours+hh < 23) {
+                  time.hours += hh; 
+              } else {
+                  time.hours = (time.hours+hh) - 24*h;
+              };
+          };
+          function Time_hours() {
+              var hh = Number(prompt('Сколько часов необходимо добавить к текущему времени?'));
+              Hour(hh);
+              Time_show();
+          };
+          
+      </script>
+  </body>
+</html>
